@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Color and Text Updater</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 30px;
+        }
+
+        #contentBox {
+            width: 300px;
+            height: 150px;
+            background-color: lightgray;
+            padding: 15px;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+
+        input {
+            padding: 8px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Dynamic Div Updater</h2>
+    <input type="text" id="colorInput" placeholder="Enter a color (e.g. red, #00ff00)">
+    <br>
+    <input type="text" id="textInput" placeholder="Enter new text for the box">
+    <br>
+    <button id="bgButton">Change Background</button>
+    <button id="textButton">Update Text</button>
+    <div id="contentBox">Initial content inside the box.</div>
+
+    <script>
+        const colorInput = document.getElementById('colorInput');
+        const textInput = document.getElementById('textInput');
+        const contentBox = document.getElementById('contentBox');
+
+        const bgButton = document.getElementById('bgButton');
+        const textButton = document.getElementById('textButton');
+        function isValidColor(color) {
+            const s = new Option().style;
+            s.color = color;
+            return s.color !== '';
+        }
+        bgButton.addEventListener('click', () => {
+            const color = colorInput.value.trim();
+            if (isValidColor(color)) {
+                contentBox.style.backgroundColor = color;
+            } else {
+                alert('Invalid color name!');
+            }
+        });
+        textButton.addEventListener('click', () => {
+            const newText = textInput.value.trim();
+            if (newText === '') {
+                alert('Please enter some text!');
+            } else {
+                contentBox.textContent = newText;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
